@@ -52,6 +52,10 @@ Let's create a pod and service from our container:
 
 kubectl apply -f .\deployment.yaml
 
+And create the oauth deployment:
+
+kubectl apply -f .\oauth2-proxy.yaml
+
 Next you will need to edit ingress.yaml, change each - host: reference to match your domain. You will also need to edit the secrets you retrieved when you created your GH application. For the "OAUTH2_PROXY_COOKIE_SECRET" run this (there are docker containers for this if you do not have python installed, google it):
 
 ``` 
