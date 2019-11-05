@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ajax-site
+spec:
+  selector:
+    app: ajaxsite
+  ports:
+    - port: 80 # Default port for image
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ajaxsitedeployment
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ajaxsite
+    spec:
+      containers:
+        - name: ajaxsite
+          imagePullPolicy: Never
+          image: simplehttp:v1
+          ports:
+            - containerPort: 80
+
