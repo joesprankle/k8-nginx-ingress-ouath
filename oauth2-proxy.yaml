@@ -17,20 +17,18 @@ spec:
     spec:
       containers:
       - args:    
-        - --provider=github
-        - --email-domain=*
+        - --provider=oidc
+        - --oidc-issuer-url=https://identity.mydomain.com/identity
         - --upstream=file:///dev/null
         - --http-address=0.0.0.0:4180
+        - --client-id=joe.dev.client
+        - --client-secret=Wq1APpZeqCP+WTrJPsZaH8012Zfd4/LbFN
+        - --cookie-secret=sGBOr+eVZ2T
+        - --redirect-url=https://test.toolsforsellers.com/
+        - --email-domain=test.com
         # Register a new application
         # https://github.com/settings/applications/new
-        env:
-        - name: OAUTH2_PROXY_CLIENT_ID
-          value: 38c0103c2546xxxxxx
-        - name: OAUTH2_PROXY_CLIENT_SECRET
-          value: a47d3362c4698b48fe48c20fxxxxxxxx
-        # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
-        - name: OAUTH2_PROXY_COOKIE_SECRET
-          value: sGBOr+eVZ2TfSxxxxxx
+
         image: quay.io/pusher/oauth2_proxy:latest
         imagePullPolicy: Always
         name: oauth2-proxy
